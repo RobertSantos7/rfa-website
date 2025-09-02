@@ -1,27 +1,20 @@
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
-import type {Metadata} from "next";
 
-export const metadata: Metadata = {
-  title: "RFA Data Insights",
-  description: "Actionable financial analysis: cash flow, profitability and inventory."
+type Props = {
+  children: React.ReactNode;
+  params: { locale: string };
 };
 
-export default async function LocaleLayout({
-  children,
-  params: {locale}
-}: {
-  children: React.ReactNode;
-  params: {locale: string};
-}) {
-  const messages = await getMessages(); // carga messages/en.json o messages/es.json
+// ⬇️ Layout anidado: NO usa <html> ni <body>
+export default async function LocaleLayout({ children, params: { locale } }: Props) {
+  // Carga el messages/<locale>.json correcto
+  const messages = await getMessages();
+
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      {children}
+    </NextIntlClientProvider>
   );
 }
+
