@@ -5,6 +5,7 @@ import {useState} from "react";
 import {Menu} from "lucide-react";
 import {usePathname} from "next/navigation";
 import LocaleSwitcher from "../components/LocaleSwitcher"; // ← ahora sí lo usamos
+import Image from "next/image";
 
 // Lee el idioma actual de la URL: /en/... o /es/...
 function useCurrentLocale() {
@@ -36,10 +37,17 @@ export default function Navbar() {
         </button>
 
         {/* Marca */}
-        <Link href={l(locale, "/")} className="flex items-center gap-2">
-          <img src="/logo.png" alt="RFA" className="h-7 w-auto" />
-          <span className="sr-only">RFA Data Insights</span>
-        </Link>
+       <Link href={l(locale, "/")} className="flex items-center gap-2">
+  <Image
+    src="/logo.png"                 // está en /public/logo.png, perfecto
+    alt="RFA Data Insights"
+    width={120}                     // pon valores reales aproximados
+    height={32}
+    priority
+    className="h-7 w-auto"
+  />
+  <span className="sr-only">RFA Data Insights</span>
+</Link>
 
         {/* Navegación desktop */}
         <nav className="hidden md:flex items-center gap-4 text-sm">
