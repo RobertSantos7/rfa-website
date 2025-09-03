@@ -41,8 +41,8 @@ export default function Navbar() {
   <Image
     src="/logo.png"                 // está en /public/logo.png, perfecto
     alt="RFA Data Insights"
-    width={120}                     // pon valores reales aproximados
-    height={32}
+    width={112}                     // pon valores reales aproximados
+    height={28}
     priority
     className="h-7 w-auto"
   />

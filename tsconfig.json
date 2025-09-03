@@ -35,7 +35,11 @@
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": {
+  "compilerOptions": { /* ...igual que ya tienes... */ },
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+  "exclude": [".next", "node_modules"]
 }
+
+}
+

@@ -2,11 +2,11 @@
 
 import { Briefcase, BarChart, DollarSign, FileText, RefreshCcw, TrendingUp } from "lucide-react";
 import { useState } from "react";
-import PlanModal from "./components/PlanModal";
-import Navbar from "./components/Navbar";
-import HowItWorks from "./components/HowItWorks";
-import FAQs from "./components/FAQs";
-import Footer from "./components/Footer";
+import PlanModal from "../../components/PlanModal";
+import Navbar from "../../components/Navbar";
+import HowItWorks from "../../components/HowItWorks";
+import FAQs from "../../components/FAQs";
+import Footer from "../../components/Footer";
 
 
 type PlanName = "Basic" | "Standard" | "Premium";
