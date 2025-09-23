@@ -2,8 +2,8 @@
 import { IntlConfig } from 'next-intl';
 
 const intlConfig: IntlConfig = {
-  locale: 'en-US',                // idioma por defecto
-  messagesDirectory: './messages' // carpeta donde están los JSON
+  defaultLocale: 'en-US', // Usa 'defaultLocale' en lugar de 'locale'
+  messagesDirectory: './messages' // La carpeta donde están los JSON
 };
 
 export default intlConfig;
