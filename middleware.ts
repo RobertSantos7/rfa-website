@@ -1,11 +1,12 @@
 // middleware.ts
 import createMiddleware from 'next-intl/middleware';
 
-createMiddleware({
-  locales: ['en-US'], // An array of supported locales
-  defaultLocale: 'en-US', // The default locale
+export default createMiddleware({
+  locales: ['en-US'], // Un array de los idiomas soportados
+  defaultLocale: 'en-US', // El idioma por defecto
 });
 
 export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)'], // todas las rutas excepto /api y assets
+  // Configuración de las rutas (matcher)
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
 };
