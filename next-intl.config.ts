@@ -2,9 +2,7 @@
 import { IntlConfig } from 'next-intl';
 
 const nextIntlConfig: IntlConfig = {
-  locales: ['en', 'es'],          // Idiomas soportados
-  defaultLocale: 'en',             // Idioma por defecto
-  messagesDirectory: './messages'  // Carpeta de traducciones
+  messagesDirectory: './messages' // Carpeta donde están los JSON
 };
 
 export default nextIntlConfig;
