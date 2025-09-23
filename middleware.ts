@@ -1,8 +1,9 @@
+// middleware.ts
 import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({
-  locales: ['en', 'es'],
-  defaultLocale: 'en'
+  locale: 'en',      // idioma por defecto
+  locales: ['en','es'] // idiomas disponibles
 });
 
 export const config = {
