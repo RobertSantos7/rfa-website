@@ -1,7 +1,7 @@
 // middleware.ts
 import createMiddleware from 'next-intl/middleware';
 
-export createMiddleware({
+createMiddleware({
   locales: ['en-US'], // An array of supported locales
   defaultLocale: 'en-US', // The default locale
 });
