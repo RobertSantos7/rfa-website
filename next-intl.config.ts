@@ -1,8 +1,9 @@
 // next-intl.config.ts
 import { IntlConfig } from 'next-intl';
 
-const nextIntlConfig: IntlConfig = {
-  messagesDirectory: './messages' // Carpeta donde están los JSON
+const intlOptions: IntlConfig = {
+  locale: 'en-US',                // idioma por defecto
+  messagesDirectory: './messages' // carpeta donde están los JSON
 };
 
-export default nextIntlConfig;
+export default intlOptions;
