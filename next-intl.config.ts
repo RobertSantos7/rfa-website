@@ -1,9 +1,9 @@
-// next-intl.config.ts
-import { NextIntlConfig } from 'next-intl';
+import { IntlConfig } from 'next-intl';
 
-const nextIntlConfig: NextIntlConfig = {
-  locales: ['en', 'es'], // idiomas soportados
-  defaultLocale: 'en'    // idioma por defecto
+const nextIntlConfig: IntlConfig = {
+  locales: ['en', 'es'],
+  defaultLocale: 'en',
+  messagesDirectory: './messages'
 };
 
 export default nextIntlConfig;
