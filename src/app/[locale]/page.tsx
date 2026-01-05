@@ -1,18 +1,22 @@
 "use client";
 
+import { useTranslations } from 'next-intl'; // <--- Importamos el hook de traducción
 import { Briefcase, BarChart, DollarSign, FileText, RefreshCcw, TrendingUp } from "lucide-react";
 import { useState } from "react";
-import PlanModal from "../../components/PlanModal";
-import Navbar from "../../components/Navbar";
-import HowItWorks from "../../components/HowItWorks";
-import FAQs from "../../components/FAQs";
-import Footer from "../../components/Footer";
 
+// Asegúrate de que estas rutas sean correctas según donde tengas tus componentes
+import PlanModal from "../components/PlanModal";
+import Navbar from "../components/Navbar";
+import HowItWorks from "../components/HowItWorks";
+import FAQs from "../components/FAQs";
+import Footer from "../components/Footer";
 
 type PlanName = "Basic" | "Standard" | "Premium";
 
-const services =
- [
+// NOTA: Para traducir servicios y precios, idealmente deberías mover estos textos 
+// a tus archivos en /messages/en.json y es.json. 
+// Por ahora los dejo hardcoded para que no se rompa la app mientras pruebas el Hero.
+const services = [
   { icon: <BarChart className="w-8 h-8 text-green-700" />, title: "Financial Statement Analysis", description: "In-depth analysis of your business income, expenses, and profit." },
   { icon: <DollarSign className="w-8 h-8 text-green-700" />, title: "Cash Flow Tracking", description: "Visual and tabular reports on monthly and weekly cash flow." },
   { icon: <TrendingUp className="w-8 h-8 text-green-700" />, title: "Product Profitability", description: "Analysis by product, category, and subcategory." },
@@ -61,6 +65,7 @@ const pricingPlans: { name: PlanName; price: number; features: string[] }[] = [
 ];
 
 export default function HomePage() {
+  const t = useTranslations('hero'); // <--- Cargamos las traducciones del bloque 'hero'
   const [selectedPlan, setSelectedPlan] = useState<PlanName | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -69,30 +74,38 @@ export default function HomePage() {
     setIsModalOpen(true);
   };
 
-
   return (
     <>
-    <Navbar />
+      <Navbar />
    
-      {/* Hero */}
+      {/* Hero Section */}
       <main className="flex min-h-screen flex-col items-center justify-center px-6 bg-[#FAF9F7] text-gray-800">
         <div className="text-center space-y-6">
+          {/* Asegúrate que el logo esté en la carpeta public */}
           <img src="/logo.png" alt="RFA Logo" className="h-80 mx-auto" />
-          <h1 className="text-6xl font-bold text-[#082A49]">RFA Data Insights</h1>
-          <p className="text-xl text-[#2D732D]">Understand your numbers. Improve your results.</p>
+          
+          {/* Título Traducido */}
+          <h1 className="text-6xl font-bold text-[#082A49]">
+            {t('title')} 
+          </h1>
+          
+          {/* Subtítulo Traducido */}
+          <p className="text-xl text-[#2D732D]">
+            {t('subtitle')}
+          </p>
 
-          {/* Contact Us: NO abre modal */}
+          {/* Botón Traducido */}
           <button
             onClick={() => { window.location.href = "/contact"; }}
             className="mt-6 px-8 py-4 bg-[#2ED732] text-white rounded-xl hover:bg-[#1B5E20] transition text-lg"
           >
-            Contact Us
+            {t('cta')}
           </button>
         </div>
       </main>
 
-      {/* Services */}
-      <section className="mt-20 px-6">
+      {/* Services Section */}
+      <section id="services" className="mt-20 px-6">
         <h2 className="text-2xl font-bold text-center text-green-800 mb-10">Our Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {services.map((service, index) => (
@@ -105,8 +118,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="bg-[#F0F7F4] py-20">
+      {/* Pricing Section */}
+      <section id="pricing" className="bg-[#F0F7F4] py-20">
         <h2 className="text-3xl font-bold text-center text-[#082A49] mb-2">Compare Our Pricing Plans</h2>
         <p className="text-center text-gray-600 mb-12">Find the perfect fit for your needs</p>
 
@@ -131,8 +144,6 @@ export default function HomePage() {
               <button
                 onClick={() => handlePlanClick(plan.name)}
                 className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl mt-4 w-full"
-                aria-label={`Subscribe to ${plan.name}`}
-                title={`Subscribe to ${plan.name}`}
               >
                 To subscribe to a plan
               </button>
@@ -140,27 +151,18 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Modal SOLO para planes (nota: usamos selectedPlan! para satisfacer TS) */}
         {isModalOpen && selectedPlan && (
           <PlanModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
-            planName={selectedPlan!}
+            planName={selectedPlan}
           />
         )}
       </section>
-      <section id="services" className="mt-20 px-6">
-  {/* ...tu sección de servicios... */}
-</section>
 
-<section id="pricing" className="bg-[#F0F7F4] py-20">
-  {/* ...tu sección de precios (cards + PlanModal)... */}
-</section>
-<HowItWorks />
-<FAQs />
-<Footer />
-
+      <HowItWorks />
+      <FAQs />
+      <Footer />
     </>
   );
 }
-
